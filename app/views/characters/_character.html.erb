@@ -44,4 +44,10 @@
     <%= character.proficiency_bonus %>
   </p>
 
+
+  <p>
+    <strong>Updated at:</strong>
+    <%= time_tag character.updated_at, "data_local": "time", "data-format": "%B %e, %Y %l:%M%P"%>
+  </p>
+
 </div>

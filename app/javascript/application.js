@@ -4,3 +4,7 @@ import "controllers"
 
 import "trix"
 import "@rails/actiontext"
+
+// importa a biblioteca do javascript
+import LocalTime from "local-time"
+LocalTime.start()
