@@ -4,6 +4,7 @@ class CharactersController < ApplicationController
   # GET /characters or /characters.json
   def index
     @characters = Character.all
+    # raise "oiii!!" mensagem de erro customizada
   end
 
   # GET /characters/1 or /characters/1.json
