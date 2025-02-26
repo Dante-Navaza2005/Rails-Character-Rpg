@@ -4,13 +4,79 @@
 
 <h1>Characters</h1>
 
-<div id="characters">
+<table>
+  <tr>
+    <th>
+      Name
+    </th>
+    <th>
+      Strength
+    </th>
+    <th>
+      Dexterity
+    </th>
+    <th>
+      Constitution
+    </th>
+    <th>
+      Intelligence
+    </th>
+    <th>
+      Wisdom
+    </th>
+    <th>
+      Charisma
+    </th>
+    <th>
+      Level
+    </th>
+    <th>
+      Proficiency Bonus
+    </th>
+    <th>
+      Updated At
+    </th>
+    <th>
+      Actions
+    </th>
+  </tr>
   <% @characters.each do |character| %>
-    <%= render character %>
-    <p>
-      <%= link_to "Show this character", character %>
-    </p>
+    <tr>
+      <td>
+        <%= character.name %>
+      </td>
+      <td>
+        <%= character.strength %>
+      </td>
+      <td>
+        <%= character.dexterity %>
+      </td>
+      <td>
+        <%= character.constitution %>
+      </td>
+      <td>
+        <%= character.intelligence %>
+      </td>
+      <td>
+        <%= character.wisdom %>
+      </td>
+      <td>
+        <%= character.charisma %>
+      </td>
+      <td>
+        <%= character.level %>
+      </td>
+      <td>
+        <%= character.proficiency_bonus %>
+      </td>
+      <td>
+        <%= time_tag character.updated_at, "data_local": "time", "data-format": "%B %e, %Y %l:%M%P"%>
+      </td>
+      <td>
+        <%= link_to "view", character %>
+      </td>
+    </tr>
   <% end %>
-</div>
+</table>
 
 <%= link_to "New character", new_character_path %>

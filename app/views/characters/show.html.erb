@@ -1,7 +1,21 @@
 <p style="color: green"><%= notice %></p>
 
 <%= render @character %>
-
+<h2>Skills</h2>
+<% if @character.skills.any? %>
+  <ul>
+    <% @character.skills.each do |skill| %>
+      <li>
+        <strong><%= skill.name %></strong> - 
+        Ability: <%= skill.ability.capitalize %> | 
+        Score: <%= skill.score %> | 
+        Proficient: <%= skill.proficient ? "Yes" : "No" %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>This character has no skills yet.</p>
+<% end %>
 <div>
   <%= link_to "Edit this character", edit_character_path(@character) %> |
   <%= link_to "Back to characters", characters_path %>
