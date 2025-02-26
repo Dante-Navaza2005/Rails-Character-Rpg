@@ -44,6 +44,21 @@
     <%= character.proficiency_bonus %>
   </p>
 
+  <h2>Skills</h2>
+  <% if character.skills.any? %>
+    <ul>
+      <% character.skills.each do |skill| %>
+        <li>
+          <strong><%= skill.name %></strong> - 
+          Ability: <%= skill.ability.capitalize %> | 
+          Score: <%= skill.score %> | 
+          Proficient: <%= skill.proficient ? "Yes" : "No" %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>This character has no skills yet.</p>
+  <% end %>
 
   <p>
     <strong>Updated at:</strong>
