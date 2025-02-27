@@ -1,6 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <%= render @character %>
+
 <h2>Skills</h2>
 <% if @character.skills.any? %>
   <ul>
@@ -16,9 +17,11 @@
 <% else %>
   <p>This character has no skills yet.</p>
 <% end %>
+
 <div>
   <%= link_to "Edit this character", edit_character_path(@character) %> |
   <%= link_to "Back to characters", characters_path %>
+  <%= link_to "Add new skill", new_character_skill_path(@character) %>
 
   <%= button_to "Destroy this character", @character, method: :delete %>
 </div>

@@ -1,5 +1,5 @@
 class SkillsController < ApplicationController
-  before_action :set_skill, only: %i[ show edit update destroy ]
+  before_action :set_character
 
   # GET /skills or /skills.json
   def index
@@ -21,11 +21,12 @@ class SkillsController < ApplicationController
 
   # POST /skills or /skills.json
   def create
-    @skill = Skill.new(skill_params)
+    @character = Character.find(params[:character_id])
+    @skill = @character.skills.build(skill_params)
 
     respond_to do |format|
       if @skill.save
-        format.html { redirect_to @skill, notice: "Skill was successfully created." }
+        format.html { redirect_to @character, notice: "Skill was successfully created." }
         format.json { render :show, status: :created, location: @skill }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -63,8 +64,12 @@ class SkillsController < ApplicationController
       @skill = Skill.find(params.expect(:id))
     end
 
+    def set_character
+      @character = Character.find(params[:character_id])
+    end
+
     # Only allow a list of trusted parameters through.
     def skill_params
-      params.expect(skill: [ :character_id, :name, :ability, :score, :proficient ])
+      params.expect(skill: [ :name, :ability, :score, :proficient ])
     end
 end
