@@ -8,6 +8,8 @@ class SkillsController < ApplicationController
 
   # GET /skills/1 or /skills/1.json
   def show
+    @character = Character.find(params[:character_id])
+    @skill = @character.skills.find(params[:id])
   end
 
   # GET /skills/new
@@ -50,11 +52,20 @@ class SkillsController < ApplicationController
 
   # DELETE /skills/1 or /skills/1.json
   def destroy
-    @skill.destroy!
+    @character = Character.find(params[:character_id])  # Ensure the character exists
+    @skill = @character.skills.find(params[:id])
 
-    respond_to do |format|
-      format.html { redirect_to skills_path, status: :see_other, notice: "Skill was successfully destroyed." }
-      format.json { head :no_content }
+    if @skill
+      @skill.destroy
+      respond_to do |format|
+        format.html { redirect_to character_path(@character), notice: "Skill was successfully destroyed." }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to character_path(@character), alert: "Skill not found or already deleted." }
+        format.json { render json: { error: "Skill not found" }, status: :not_found }
+      end
     end
   end
 
