@@ -4,16 +4,39 @@
 
 <h2>Skills</h2>
 <% if @character.skills.any? %>
-  <ul>
+  <table>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Ability
+      </th>
+      <th>
+        Score
+      </th>
+      <th>
+        Proficient
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
     <% @character.skills.each do |skill| %>
-      <li>
-        <strong><%= skill.name %></strong> - 
-        Ability: <%= skill.ability.capitalize %> | 
-        Score: <%= skill.score %> | 
-        Proficient: <%= skill.proficient ? "Yes" : "No" %>
-      </li>
+      <tr>
+        <td><%= skill.name %></td>
+        <td><%= skill.ability.capitalize %></td>
+        <td><%= skill.score %></td>
+        <td><%= skill.proficient? ? "Yes" : "No" %></td>
+        <td>
+          <p>
+            <%= link_to "Edit", edit_character_skill_path(@character, skill) %> |
+            <%= link_to "Destroy", character_skill_path(@character, skill), method: :delete, data: { confirm: "Are you sure?" } %>
+          </p>
+        </td>
+      </tr>
     <% end %>
-  </ul>
+  </table>
 <% else %>
   <p>This character has no skills yet.</p>
 <% end %>
