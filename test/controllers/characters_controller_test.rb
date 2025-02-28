@@ -2,7 +2,7 @@ require "test_helper"
 
 class CharactersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @character = characters(:one)
+    @character = characters(:dante)
   end
 
   test "should get index" do

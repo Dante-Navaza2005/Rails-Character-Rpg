@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_26_121349) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_28_144942) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -57,7 +57,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_26_121349) do
     t.integer "intelligence"
     t.integer "wisdom"
     t.integer "charisma"
-    t.integer "level"
     t.integer "proficiency_bonus"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

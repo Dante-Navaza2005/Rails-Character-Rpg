@@ -5,7 +5,15 @@ class Character < ApplicationRecord
     name
   end
 
-  def teste
-    1+1
+  def level
+    (strength + dexterity + constitution + intelligence + wisdom + charisma)/6
+  end
+
+  def ultimate
+    2+2
+  end
+
+  def alive
+    true
   end
 end

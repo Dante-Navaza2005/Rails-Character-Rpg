@@ -2,15 +2,6 @@ class SkillsController < ApplicationController
   before_action :set_character, except: :destroy
   before_action :set_skill, only: %i[ edit update destroy show ]
 
-  # GET /skills or /skills.json
-  def index
-    @skills = Skill.all
-  end
-
-  # GET /skills/1 or /skills/1.json
-  def show
-  end
-
   # GET /skills/new
   def new
     @skill = Skill.new
