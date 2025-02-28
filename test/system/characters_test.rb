@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class CharactersTest < ApplicationSystemTestCase
   setup do
-    @character = characters(:one)
+    @character = characters(:dante)
   end
 
   test "visiting the index" do
@@ -18,7 +18,6 @@ class CharactersTest < ApplicationSystemTestCase
     fill_in "Constitution", with: @character.constitution
     fill_in "Dexterity", with: @character.dexterity
     fill_in "Intelligence", with: @character.intelligence
-    fill_in "Level", with: @character.level
     fill_in "Name", with: @character.name
     fill_in "Proficiency bonus", with: @character.proficiency_bonus
     fill_in "Strength", with: @character.strength
@@ -37,7 +36,6 @@ class CharactersTest < ApplicationSystemTestCase
     fill_in "Constitution", with: @character.constitution
     fill_in "Dexterity", with: @character.dexterity
     fill_in "Intelligence", with: @character.intelligence
-    fill_in "Level", with: @character.level
     fill_in "Name", with: @character.name
     fill_in "Proficiency bonus", with: @character.proficiency_bonus
     fill_in "Strength", with: @character.strength
@@ -50,8 +48,11 @@ class CharactersTest < ApplicationSystemTestCase
 
   test "should destroy Character" do
     visit character_url(@character)
-    click_on "Destroy this character", match: :first
 
-    assert_text "Character was successfully destroyed"
+    page.accept_confirm do
+      click_on "Destroy this character", match: :first
+    end
+
+    assert_text "Character was successfully destroyed."
   end
 end

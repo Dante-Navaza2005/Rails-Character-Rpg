@@ -11,29 +11,29 @@ class SkillsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  # test "should create skill" do
-  #   assert_difference("Skill.count") do
-  #     post skills_url, params: { skill: { ability: @skill.ability, character_id: @skill.character_id, name: @skill.name, proficient: @skill.proficient, score: @skill.score } }
-  #   end
+  test "should create skill" do
+    assert_difference("Skill.count") do
+      post character_skills_url(@character), params: { skill: { ability: @skill.ability, name: @skill.name, proficient: @skill.proficient, score: @skill.score }, character_id: @character.id }
+    end
 
-  #   assert_redirected_to skill_url(Skill.last)
-  # end
+    assert_redirected_to character_url(@character)
+  end
 
   test "should get edit" do
     get edit_character_skill_url(@character, @skill)
     assert_response :success
   end
 
-  # test "should update skill" do
-  #   patch skill_url(@skill), params: { skill: { ability: @skill.ability, character_id: @skill.character_id, name: @skill.name, proficient: @skill.proficient, score: @skill.score } }
-  #   assert_redirected_to skill_url(@skill)
-  # end
+  test "should update skill" do
+    patch character_skill_url(@character, @skill), params: { skill: { ability: @skill.ability, character_id: @skill.character_id, name: @skill.name, proficient: @skill.proficient, score: @skill.score } }
+    assert_redirected_to character_url(@character)
+  end
 
-  # test "should destroy skill" do
-  #   assert_difference("Skill.count", -1) do
-  #     delete skill_url(@skill)
-  #   end
+  test "should destroy skill" do
+    assert_difference("Skill.count", -1) do
+      delete skill_url(@skill)
+    end
 
-  #   assert_redirected_to skills_url
-  # end
+    assert_redirected_to character_url(@character)
+  end
 end

@@ -3,6 +3,7 @@ require "application_system_test_case"
 class SkillsTest < ApplicationSystemTestCase
   setup do
     @skill = skills(:one)
+    @character = characters(:dante)
   end
 
   # test "should create skill" do
@@ -35,10 +36,13 @@ class SkillsTest < ApplicationSystemTestCase
   #   click_on "Back"
   # end
 
-  # test "should destroy Skill" do
-  #   visit skill_url(@skill)
-  #   click_on "Destroy this skill", match: :first
+  test "should destroy Skill" do
+    visit character_url(@character)
 
-  #   assert_text "Skill was successfully destroyed"
-  # end
+    page.accept_confirm do
+      click_on "Destroy skill", match: :first
+    end
+
+    assert_text "Skill was successfully destroyed."
+  end
 end

@@ -1,6 +1,6 @@
 class SkillsController < ApplicationController
   before_action :set_character, except: :destroy
-  before_action :set_skill, only: %i[ edit update destroy show ]
+  before_action :set_skill, only: %i[ edit update destroy ]
 
   # GET /skills/new
   def new
@@ -30,8 +30,8 @@ class SkillsController < ApplicationController
   def update
     respond_to do |format|
       if @skill.update(skill_params)
-        format.html { redirect_to @skill, notice: "Skill was successfully updated." }
-        format.json { render :show, status: :ok, location: @skill }
+        format.html { redirect_to @character, notice: "Skill was successfully updated." }
+        format.json { render :show, status: :ok, location: @character }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @skill.errors, status: :unprocessable_entity }
