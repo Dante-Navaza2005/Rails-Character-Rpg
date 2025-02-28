@@ -3,8 +3,6 @@
 <%= render @skill %>
 
 <div>
-  <%= link_to "Edit this skill", edit_skill_path(@skill) %> |
-  <%= link_to "Back to skills", skills_path %>
-
-  <%= button_to "Destroy this skill", character_skill_path(@skill.character, @skill), method: :delete %>
+  <%= link_to "Edit this skill", edit_character_skill_path(@character, @skill) %> |
+  <%= button_to "Destroy this skill", character_skill_path(@character, @skill), method: :delete %>
 </div>

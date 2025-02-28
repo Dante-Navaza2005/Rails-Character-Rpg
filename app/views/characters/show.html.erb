@@ -31,7 +31,7 @@
         <td>
           <p>
             <%= link_to "Edit", edit_character_skill_path(@character, skill) %> |
-            <%= link_to "Destroy", [@character, skill], method: :delete %>
+            <%= link_to "Destroy", skill, data: { turbo_confirm: 'Tem Certeza?', turbo_method: :delete } %>
           </p>
         </td>
       </tr>
@@ -46,5 +46,5 @@
   <%= link_to "Back to characters", characters_path %>
   <%= link_to "Add new skill", new_character_skill_path(@character) %>
 
-  <%= button_to "Destroy this character", @character, method: :delete %>
+  <%= link_to "Destroy this character", @character, data: { turbo_confirm: 'Tem Certeza?', turbo_method: :delete } %>
 </div>

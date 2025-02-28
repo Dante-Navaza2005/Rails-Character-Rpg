@@ -1,5 +1,6 @@
 class SkillsController < ApplicationController
-  before_action :set_character
+  before_action :set_character, except: :destroy
+  before_action :set_skill, only: %i[ edit update destroy show ]
 
   # GET /skills or /skills.json
   def index
@@ -8,8 +9,6 @@ class SkillsController < ApplicationController
 
   # GET /skills/1 or /skills/1.json
   def show
-    @character = Character.find(params[:character_id])
-    @skill = @character.skills.find(params[:id])
   end
 
   # GET /skills/new
@@ -23,7 +22,6 @@ class SkillsController < ApplicationController
 
   # POST /skills or /skills.json
   def create
-    @character = Character.find(params[:character_id])
     @skill = @character.skills.build(skill_params)
 
     respond_to do |format|
@@ -52,27 +50,19 @@ class SkillsController < ApplicationController
 
   # DELETE /skills/1 or /skills/1.json
   def destroy
-    @character = Character.find(params[:character_id])  # Ensure the character exists
-    @skill = @character.skills.find(params[:id])
+    character = @skill.character
+    @skill.destroy!
 
-    if @skill
-      @skill.destroy
-      respond_to do |format|
-        format.html { redirect_to character_path(@character), notice: "Skill was successfully destroyed." }
-        format.json { head :no_content }
-      end
-    else
-      respond_to do |format|
-        format.html { redirect_to character_path(@character), alert: "Skill not found or already deleted." }
-        format.json { render json: { error: "Skill not found" }, status: :not_found }
-      end
+    respond_to do |format|
+      format.html { redirect_to character, notice: "Skill was successfully destroyed." }
+      format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_skill
-      @skill = Skill.find(params.expect(:id))
+      @skill = Skill.find(params[:id])
     end
 
     def set_character
